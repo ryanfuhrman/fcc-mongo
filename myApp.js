@@ -17,20 +17,33 @@ const createAndSavePerson = (done) => {
 
   johnnyBananas.save(function(err, data) {
     if (err) return console.log(err);
-    done(null , data);
+    done(null, data);
   });
 };
 
+const arrayOfPeople = [{name: 'Steven Seagal', age: 73, favoriteFoods: ['beef jerky', 'hamburger']}, {name: 'Wes Bergman', age: 41, favoriteFoods: ['whey protein', 'oranges']}, {name: 'Killa Kam', age: 29, favoriteFoods: ['pasta', 'sandwiches']}];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, function(err, data) {
+    if (err) return console.log(err);
+    done(null, data);
+  });
 };
 
+const personName = 'Johnny Bananas';
+
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, function(err, names) {
+    if (err) return console.log(err);
+    done(null, names);
+  });
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({name: 'Killa Kam'}, function(err, name) {
+    if (err) return console.log(err);
+    done(null, name);
+  })
 };
 
 const findPersonById = (personId, done) => {
